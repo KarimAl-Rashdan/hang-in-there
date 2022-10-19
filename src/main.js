@@ -114,7 +114,7 @@ var currentPoster;
 //waits for user input and then when user input is done it invokes a function
 
 poster.addEventListener("load", pageLoad())
-//randomPosterButton.addEventListener("click", showRandomPoster())
+randomPosterButton.addEventListener("click", showRandomPoster)
 //html and js know what 'load' means 
 
 // functions and event handlers go here 👇

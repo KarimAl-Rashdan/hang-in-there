@@ -114,7 +114,7 @@ var currentPoster;
 //waits for user input and then when user input is done it invokes a function
 
 poster.addEventListener("load", pageLoad())
-randomPosterButton.addEventListener("click", showRandomPoster())
+//randomPosterButton.addEventListener("click", showRandomPoster())
 //html and js know what 'load' means 
 
 // functions and event handlers go here 👇
@@ -132,21 +132,13 @@ function pageLoad() {
     title: titles[titleIndex],
     quote: quotes[quoteIndex],
   }
-
-  console.log("these are the numbers you are looking for ",imageIndex, titleIndex, quoteIndex)
-  console.log("Hey, the page reloaded!")
-  console.log(`Hey, these are your object properties `, newPoster.image, newPoster.title, newPoster.quote)
-
   poster.innerHTML += `<img class="poster-img" src=${newPoster.image} alt="poster image">
   <h1 class="poster-title">${newPoster.title}</h1>
   <h3 class="poster-quote">${newPoster.quote}</h3>`
-  console.log(poster)
   //whatever is pushed into innerHTML will update html file
 }
 function showRandomPoster() {
-  //poster.classList.add("hidden")
   poster.innerHTML = null
-  console.log(`Hey this is your `, poster)
   var imageIndex = getRandomIndex(images)
   var titleIndex = getRandomIndex(titles)
   var quoteIndex = getRandomIndex(quotes)
@@ -155,10 +147,6 @@ function showRandomPoster() {
     title: titles[titleIndex],
     quote: quotes[quoteIndex],
   }
-  console.log("these are the numbers you are looking for ",imageIndex, titleIndex, quoteIndex)
-  console.log("Hey, the page reloaded!")
-  console.log(`Hey, these are your object properties `, newPoster.image, newPoster.title, newPoster.quote)
-
   poster.innerHTML += `<img class="poster-img" src=${newPoster.image} alt="poster image">
   <h1 class="poster-title">${newPoster.title}</h1>
   <h3 class="poster-quote">${newPoster.quote}</h3>`

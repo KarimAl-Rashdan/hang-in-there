@@ -1,5 +1,11 @@
 // query selector variables go here 👇
 
+var poster = document.querySelector(".poster")
+//everything from index.html under 'poster' 
+//document => .html files querySelector => js method, can pull from html, matching on html files
+
+
+
 // we've provided you with some data to work with 👇
 var images = [
   "./assets/bees.jpg",
@@ -102,12 +108,20 @@ var savedPosters = [];
 var currentPoster;
 
 // event listeners go here 👇
+//waits for user input and then when user input is done it invokes a function
+
+poster.addEventListener("load", pageLoad())
+//html and js know what 'load' means 
 
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 }
+function pageLoad() {
+  console.log("Hey, the page reloaded!")
+}
+//console.log makes sure the page and the code are talking to each other
 
 //When the page loads, we should see a poster with a randomly selected image, title, and quote
 // Every time the user clicks the Show Random Poster button, a new random poster is displayed.

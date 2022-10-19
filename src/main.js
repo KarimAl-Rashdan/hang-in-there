@@ -119,7 +119,25 @@ function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 }
 function pageLoad() {
+  poster.innerHTML = null
+  var imageIndex = getRandomIndex(images)
+  var titleIndex = getRandomIndex(titles)
+  var quoteIndex = getRandomIndex(quotes)
+  var newPoster = {
+    image: images[imageIndex],
+    title: titles[titleIndex],
+    quote: quotes[quoteIndex],
+  }
+
+  console.log("these are the numbers you are looking for ",imageIndex, titleIndex, quoteIndex)
   console.log("Hey, the page reloaded!")
+  console.log(`Hey, these are your object properties `, newPoster.image, newPoster.title, newPoster.quote)
+
+  poster.innerHTML += `<img class="poster-img" src=${newPoster.image} alt="poster image">
+  <h1 class="poster-title">${newPoster.title}</h1>
+  <h3 class="poster-quote">${newPoster.quote}</h3>`
+  console.log(poster)
+  //whatever is pushed into innerHTML will update html file
 }
 //console.log makes sure the page and the code are talking to each other
 

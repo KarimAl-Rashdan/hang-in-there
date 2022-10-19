@@ -109,3 +109,9 @@ function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 }
 
+//When the page loads, we should see a poster with a randomly selected image, title, and quote
+// Every time the user clicks the Show Random Poster button, a new random poster is displayed.
+
+//listen for a page to load, when it loads should show a random image from above with another random title from above and a random quote from above
+//create a poster with random image, quote and title
+//send completed poster to the DOM(display) data model(behind the scenes)

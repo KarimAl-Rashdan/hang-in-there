@@ -2,6 +2,8 @@
 
 var poster = document.querySelector(".poster")
 var randomPosterButton = document.querySelector(".show-random")
+var makeYourOwnPosterButton = document.querySelector(".poster-form")
+var mainPoster = document.querySelector(".main-poster")
 //var randomPosterView = document.querySelector("")
 //everything from index.html under 'poster' 
 //document => .html files querySelector => js method, can pull from html, matching on html files
@@ -113,8 +115,11 @@ var currentPoster;
 // event listeners go here 👇
 //waits for user input and then when user input is done it invokes a function
 
-poster.addEventListener("load", pageLoad())
-randomPosterButton.addEventListener("click", showRandomPoster())
+window.addEventListener("load", pageLoad)
+// poster.addEventListener("load", pageLoad())
+window.addEventListener("click", makeYourOwnPosterForm)
+randomPosterButton.addEventListener("click", showRandomPoster)
+// makeYourOwnPosterButton.addEventListener("click", makeYourOwnPosterForm)
 //html and js know what 'load' means 
 
 // functions and event handlers go here 👇
@@ -163,6 +168,31 @@ function showRandomPoster() {
   <h1 class="poster-title">${newPoster.title}</h1>
   <h3 class="poster-quote">${newPoster.quote}</h3>`
 }
+function makeYourOwnPosterForm() {
+  // var imageIndex = getRandomIndex(images)
+  // var titleIndex = getRandomIndex(titles)
+  // var quoteIndex = getRandomIndex(quotes)
+  // var newPoster = {
+  //   image: images[imageIndex],
+  //   title: titles[titleIndex],
+  //   quote: quotes[quoteIndex],
+  // }
+  console.log(mainPoster, makeYourOwnPosterButton)
+  mainPoster.classList.add("hidden")
+  makeYourOwnPosterButton.classList.remove("hidden")
+  
+  // makeYourOwnPosterButton.innerHTML = null
+  // makeYourOwnPosterButton.innerHTML += `<h2>Create your own motivational poster</h2>
+  // <label for="poster-image-url">${newPoster.image}</label>
+  // <input type="text" name="poster-image-url" id="poster-image-url" placeholder="https://gph.is/2n553Ra">
+  // <label for="poster-title">${newPoster.title}</label>
+  // <input type="text" name="poster-title" id="poster-title" placeholder="Growth Mindset">
+  // <label for="poster-quote">${newPoster.quote}</label>
+  //   <input type="text" name="poster-quote" id="poster-quote" placeholder="Hang in there!">
+  // <button class="make-poster">Show my poster</button>`
+  console.log("This'll be checking the makeyourownposterbutton")
+}
+
 //console.log makes sure the page and the code are talking to each other
 
 //When the page loads, we should see a poster with a randomly selected image, title, and quote

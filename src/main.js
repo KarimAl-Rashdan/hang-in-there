@@ -10,9 +10,8 @@ var savedPostersPage = document.querySelector(".saved-posters")
 var nevermindButton = document.querySelector(".show-main")
 var backToMainButton = document.querySelector(".back-to-main")
 
-
+// event listeners go here 👇
 window.addEventListener("load", pageLoad)
-
 makeYourOwnPosterButton.addEventListener("click", makeYourOwnPosterForm)
 randomPosterButton.addEventListener("click", showRandomPoster)
 viewSavedButton.addEventListener("click", viewSavedPosters)
@@ -120,8 +119,6 @@ var quotes = [
 ];
 var savedPosters = [];
 var currentPoster;
-
-// event listeners go here 👇
  
 
 // functions and event handlers go here 👇
@@ -133,8 +130,6 @@ function pageLoad() {
   mainPoster.classList.remove("hidden")
   makeYourOwnFormPage.classList.add("hidden")
   savedPostersPage.classList.add("hidden")
-
-  poster.innerHTML = null
   var imageIndex = getRandomIndex(images)
   var titleIndex = getRandomIndex(titles)
   var quoteIndex = getRandomIndex(quotes)
@@ -143,16 +138,13 @@ function pageLoad() {
     title: titles[titleIndex],
     quote: quotes[quoteIndex],
   }
-
-
-  poster.innerHTML += `<img class="poster-img" src=${newPoster.image} alt="poster image">
+  poster.innerHTML = `<img class="poster-img" src=${newPoster.image} alt="poster image">
   <h1 class="poster-title">${newPoster.title}</h1>
   <h3 class="poster-quote">${newPoster.quote}</h3>`
   
 }
 function showRandomPoster() {
   makeYourOwnFormPage.classList.add("hidden")
-  poster.innerHTML = null
   console.log(`Hey this is your `, poster)
   var imageIndex = getRandomIndex(images)
   var titleIndex = getRandomIndex(titles)
@@ -162,25 +154,16 @@ function showRandomPoster() {
     title: titles[titleIndex],
     quote: quotes[quoteIndex],
   }
-  
-
-  poster.innerHTML += `<img class="poster-img" src=${newPoster.image} alt="poster image">
+  poster.innerHTML = `<img class="poster-img" src=${newPoster.image} alt="poster image">
   <h1 class="poster-title">${newPoster.title}</h1>
   <h3 class="poster-quote">${newPoster.quote}</h3>`
 }
 function makeYourOwnPosterForm() {
-  
-  console.log(mainPoster, makeYourOwnPosterButton)
   mainPoster.classList.add("hidden")
-
-  
   makeYourOwnFormPage.classList.remove("hidden")
-  
 }
 function viewSavedPosters() {
   makeYourOwnFormPage.classList.add("hidden")
   mainPoster.classList.add("hidden")
   savedPostersPage.classList.remove("hidden")
-  
-
 }

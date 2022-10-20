@@ -1,5 +1,14 @@
 // query selector variables go here 👇
 
+var poster = document.querySelector(".poster")
+var randomPosterButton = document.querySelector(".show-random")
+//var randomPosterView = document.querySelector("")
+//everything from index.html under 'poster' 
+//document => .html files querySelector => js method, can pull from html, matching on html files
+//dot notation because we are accessing a class
+
+
+
 // we've provided you with some data to work with 👇
 var images = [
   "./assets/bees.jpg",
@@ -104,6 +113,9 @@ var quotes = [
 // event listeners go here 👇
 //waits for user input and then when user input is done it invokes a function
 
+poster.addEventListener("load", pageLoad())
+randomPosterButton.addEventListener("click", showRandomPoster())
+//html and js know what 'load' means 
 
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
@@ -150,14 +162,22 @@ function pageLoad() {
     title: titles[titleIndex],
     quote: quotes[quoteIndex],
   }
+
+  console.log("these are the numbers you are looking for ",imageIndex, titleIndex, quoteIndex)
+  console.log("Hey, the page reloaded!")
+  console.log(`Hey, these are your object properties `, newPoster.image, newPoster.title, newPoster.quote)
+
   poster.innerHTML += `<img class="poster-img" src=${newPoster.image} alt="poster image">
   <h1 class="poster-title">${newPoster.title}</h1>
   <h3 class="poster-quote">${newPoster.quote}</h3>`
+  console.log(poster)
+  //whatever is pushed into innerHTML will update html file
 }
 
 
 
 function showRandomPoster() {
+  //poster.classList.add("hidden")
   poster.innerHTML = null
   var imageIndex = getRandomIndex(images)
   var titleIndex = getRandomIndex(titles)
@@ -171,15 +191,11 @@ function showRandomPoster() {
   <h1 class="poster-title">${newPoster.title}</h1>
   <h3 class="poster-quote">${newPoster.quote}</h3>`
 }
+//console.log makes sure the page and the code are talking to each other
 
+//When the page loads, we should see a poster with a randomly selected image, title, and quote
+// Every time the user clicks the Show Random Poster button, a new random poster is displayed.
 
-function yourOwnPoster() {
-  makeYourOwnPoster.classList.toggle("hidden")
-  mainPoster.classList.toggle("hidden")
-  console.log('yourOwnPoster')
-}
-
-function viewSavedPosters() {
-  mainPoster.classList.toggle("hidden")
-  console.log('viewSavedPosters')  
-}
+//listen for a page to load, when it loads should show a random image from above with another random title from above and a random quote from above
+//create a poster with random image, quote and title
+//send completed poster to the DOM(display) data model(behind the scenes)

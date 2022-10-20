@@ -2,10 +2,12 @@
 
 var poster = document.querySelector(".poster")
 var randomPosterButton = document.querySelector(".show-random")
-var makeYourOwnPosterButton = document.querySelector(".poster-form")
+var makeYourOwnPosterButton = document.querySelector(".show-form")
+var makeYourOwnFormPage = document.querySelector(".poster-form")
 var mainPoster = document.querySelector(".main-poster")
 var viewSavedButton = document.querySelector(".show-saved")
 var savedPostersPage = document.querySelector(".saved-posters")
+
 
 
 window.addEventListener("load", pageLoad)
@@ -143,7 +145,7 @@ function pageLoad() {
   
 }
 function showRandomPoster() {
-  makeYourOwnPosterButton.classList.add("hidden")
+  makeYourOwnFormPage.classList.add("hidden")
   poster.innerHTML = null
   console.log(`Hey this is your `, poster)
   var imageIndex = getRandomIndex(images)
@@ -168,11 +170,11 @@ function makeYourOwnPosterForm() {
   mainPoster.classList.add("hidden")
 
   randomPosterButton.classList.add("hidden")
-  makeYourOwnPosterButton.classList.remove("hidden")
+  makeYourOwnFormPage.classList.remove("hidden")
   viewSavedButton.classList.add("hidden")
 }
 function viewSavedPosters() {
-  makeYourOwnPosterButton.classList.add("hidden")
+  makeYourOwnFormPage.classList.add("hidden")
   mainPoster.classList.add("hidden")
   savedPostersPage.classList.remove("hidden")
   

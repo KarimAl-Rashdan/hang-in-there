@@ -7,7 +7,8 @@ var makeYourOwnFormPage = document.querySelector(".poster-form")
 var mainPoster = document.querySelector(".main-poster")
 var viewSavedButton = document.querySelector(".show-saved")
 var savedPostersPage = document.querySelector(".saved-posters")
-
+var nevermindButton = document.querySelector(".show-main")
+var backToMainButton = document.querySelector(".back-to-main")
 
 
 window.addEventListener("load", pageLoad)
@@ -15,7 +16,8 @@ window.addEventListener("load", pageLoad)
 makeYourOwnPosterButton.addEventListener("click", makeYourOwnPosterForm)
 randomPosterButton.addEventListener("click", showRandomPoster)
 viewSavedButton.addEventListener("click", viewSavedPosters)
-
+nevermindButton.addEventListener("click", pageLoad)
+backToMainButton.addEventListener("click", pageLoad)
 
 
 // we've provided you with some data to work with 👇
@@ -128,6 +130,10 @@ function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 }
 function pageLoad() {
+  mainPoster.classList.remove("hidden")
+  makeYourOwnFormPage.classList.add("hidden")
+  savedPostersPage.classList.add("hidden")
+
   poster.innerHTML = null
   var imageIndex = getRandomIndex(images)
   var titleIndex = getRandomIndex(titles)
@@ -156,9 +162,7 @@ function showRandomPoster() {
     title: titles[titleIndex],
     quote: quotes[quoteIndex],
   }
-  console.log("these are the numbers you are looking for ",imageIndex, titleIndex, quoteIndex)
-  console.log("Hey, the page reloaded!")
-  console.log(`Hey, these are your object properties `, newPoster.image, newPoster.title, newPoster.quote)
+  
 
   poster.innerHTML += `<img class="poster-img" src=${newPoster.image} alt="poster image">
   <h1 class="poster-title">${newPoster.title}</h1>
@@ -169,9 +173,9 @@ function makeYourOwnPosterForm() {
   console.log(mainPoster, makeYourOwnPosterButton)
   mainPoster.classList.add("hidden")
 
-  randomPosterButton.classList.add("hidden")
+  
   makeYourOwnFormPage.classList.remove("hidden")
-  viewSavedButton.classList.add("hidden")
+  
 }
 function viewSavedPosters() {
   makeYourOwnFormPage.classList.add("hidden")

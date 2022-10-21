@@ -159,8 +159,6 @@ function pageLoad() {
 }
 function showRandomPoster() {
   pageLoadDisplay()
-  console.log(`Hey this is your `, poster)
-  console.log("Checking to see if imageInputValue.value works: ", imageInputValue)
   randomPosterDisplay()
 }
 function makeYourOwnPosterForm() {
@@ -173,7 +171,6 @@ function viewSavedPosters() {
   savedPostersPage.classList.remove("hidden")
 }
 function submitPosterForm(event) {
-  console.log("The submitPosterForm is firing")
   event.preventDefault()
   mainPoster.classList.remove("hidden")
   makeYourOwnFormPage.classList.add("hidden")
@@ -188,7 +185,3 @@ function submitPosterForm(event) {
   quotes.push(quoteInputValue)
   savedPosters.push(currentPoster)
 }
-
-
-// posterImage.src =currentPoster.imageurl
-// posterTitle.innerText = currentPoster.title

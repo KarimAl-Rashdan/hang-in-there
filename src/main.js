@@ -1,22 +1,42 @@
+// On the new poster form view, users should be able to fill out the three input fields and then hit the Show My Poster button
+// When the Show My Poster button is clicked, several things will happen:
+// Use the values from the inputs to create a new instance of our Poster class (part of your data model)
+// Save the submitted data into the respective arrays (image URL into the images array, etc - all part of your data model) so that future random posters can use the user-created data
+// Change back to the main poster view (hiding the form view again)
+// Use the new instance of the Poster class (part of your data model) to display the newly created poster image, title, and quote in the main view on the DOM
+
+// When a user clicks the “Save This Poster” button, the current main poster will be added to the savedPosters array.
+// If a user clicks the “Save This Poster” more than once on a single poster, it will still only be saved once (no duplicates)
+// When a user clicks the “Show Saved Posters” button, we should see the saved posters section
+// All the posters in the savedPosters array should be displayed in the saved posters grid section
+
+
+
 // query selector variables go here 👇
 
-var poster = document.querySelector(".poster")
-var randomPosterButton = document.querySelector(".show-random")
-var makeYourOwnPosterButton = document.querySelector(".show-form")
-var makeYourOwnFormPage = document.querySelector(".poster-form")
-var mainPoster = document.querySelector(".main-poster")
-var viewSavedButton = document.querySelector(".show-saved")
-var savedPostersPage = document.querySelector(".saved-posters")
-var nevermindButton = document.querySelector(".show-main")
-var backToMainButton = document.querySelector(".back-to-main")
+// var poster = document.querySelector(".poster")
+// var image = document.getElementById("poster-image-url").value
+// var title = document.getElementById("poster-title").value
+// var quote = document.getElementById("poster-quote").value
+// var randomPosterButton = document.querySelector(".show-random")
+// var makeYourOwnPosterButton = document.querySelector(".show-form")
+// var makeYourOwnFormPage = document.querySelector(".poster-form")
+// var mainPoster = document.querySelector(".main-poster")
+// var viewSavedButton = document.querySelector(".show-saved")
+// var savedPostersPage = document.querySelector(".saved-posters")
+// var nevermindButton = document.querySelector(".show-main")
+// var backToMainButton = document.querySelector(".back-to-main")
+// var showMyPosterButon = document.querySelector(".make-poster")
+//var savedPostersGridPage = document.querySelector(".saved-posters-grid")
 
 // event listeners go here 👇
-window.addEventListener("load", pageLoad)
-makeYourOwnPosterButton.addEventListener("click", makeYourOwnPosterForm)
-randomPosterButton.addEventListener("click", showRandomPoster)
-viewSavedButton.addEventListener("click", viewSavedPosters)
-nevermindButton.addEventListener("click", pageLoad)
-backToMainButton.addEventListener("click", pageLoad)
+// window.addEventListener("load", pageLoad)
+// makeYourOwnPosterButton.addEventListener("click", makeYourOwnPosterForm)
+// randomPosterButton.addEventListener("click", showRandomPoster)
+// viewSavedButton.addEventListener("click", viewSavedPosters)
+// nevermindButton.addEventListener("click", pageLoad)
+// backToMainButton.addEventListener("click", pageLoad)
+// showMyPosterButon.addEventListener("click", showMyPoster)
 
 
 // we've provided you with some data to work with 👇
@@ -118,56 +138,181 @@ var quotes = [
   "A champion is defined not by their wins but by how they can recover when they fall."
 ];
 var savedPosters = [];
-var currentPoster;
+var currentPoster = {};
  
+var mainPoster = document.querySelector('.main-poster')
+var poster = document.querySelector('.poster')
+var randomPosterButton = document.querySelector('.show-random')
+var makeYourOwnPosterButton = document.querySelector('.show-form')
+var posterForm = document.querySelector('.poster-form')
+var savedPostersButton = document.querySelector('.show-saved')
+var savedPostersPage = document.querySelector('.saved-posters')
+var backToMainButton = document.querySelector('.back-to-main')
+var nevermindButton = document.querySelector('.show-main')
+var makePosterButton = document.querySelector('.make-poster')
+var saveThisPosterButton = document.querySelector('.save-poster')
+var showMySavedPostersGrid = document.querySelector('.saved-posters-grid')
+
+window.addEventListener('load', loadPage)
+randomPosterButton.addEventListener('click', showRandomPoster)
+makeYourOwnPosterButton.addEventListener('click', showMakeYourOwnPoster)
+//capture automatic reload event and call .preventDefault()
+savedPostersButton.addEventListener('click', showSavedPosters)
+backToMainButton.addEventListener('click', hideSavedPosters)
+nevermindButton.addEventListener('click', hideMakeYourOwnPoster)
+makePosterButton.addEventListener('click', createMyOwnPoster)
+saveThisPosterButton.addEventListener('click', saveCurrentPosters)
+
+function loadPage() {
+  var image = images[getRandomIndex(images)]
+  var title = titles[getRandomIndex(titles)]
+  var quote = quotes[getRandomIndex(quotes)]
+ poster.innerHTML = `<img class="poster-img" src="${image}" alt="nothin' to see here"/>
+  <h1 class="poster-title">${title}</h1>
+  <h3 class="poster-quote">${quote}</h3>`
+  var newPoster1 = new Poster(image,title,quote)
+  currentPoster = newPoster1
+}
+function showRandomPoster() {
+  loadPage()
+}
+function showMakeYourOwnPoster() {
+  mainPoster.classList.add('hidden')
+  posterForm.classList.remove('hidden')
+}
+function showSavedPosters() {
+  mainPoster.classList.add('hidden')
+  savedPostersPage.classList.remove('hidden')
+  showMySavedPostersGrid.innerHTML = `<img class="poster-img" src="${savedPosters[0].image}" alt="nothin' to see here"/>
+  <h1 class="poster-title">${savedPosters[0].title}</h1>
+  <h3 class="poster-quote">${savedPosters[0].quote}</h3>`
+}
+function hideSavedPosters() {
+  mainPoster.classList.remove('hidden')
+  savedPostersPage.classList.add('hidden')
+}
+function hideMakeYourOwnPoster() {
+  mainPoster.classList.remove('hidden')
+  posterForm.classList.add('hidden')
+}
+function createMyOwnPoster() {
+  hideMakeYourOwnPoster()
+  var image = document.getElementById("poster-image-url").value
+  var title = document.getElementById("poster-title").value
+  var quote = document.getElementById("poster-quote").value
+  poster.innerHTML = `<img class="poster-img" src="${image}" alt="nothin' to see here"/>
+  <h1 class="poster-title">${title}</h1>
+  <h3 class="poster-quote">${quote}</h3>`
+
+  images.push(image)
+  titles.push(title)
+  quotes.push(quote)
+  currentPoster = new Poster(image, title, quote)
+  savedPosters.push(currentPoster)
+}
+function saveCurrentPosters() {
+  savedPosters.push(currentPoster)
+  console.log('Will save this poster', savedPosters)
+}
+
+
 
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 }
-function pageLoad() {
-  mainPoster.classList.remove("hidden")
-  makeYourOwnFormPage.classList.add("hidden")
-  savedPostersPage.classList.add("hidden")
-  var imageIndex = getRandomIndex(images)
-  var titleIndex = getRandomIndex(titles)
-  var quoteIndex = getRandomIndex(quotes)
-  var newPoster = {
-    image: images[imageIndex],
-    title: titles[titleIndex],
-    quote: quotes[quoteIndex],
-  }
-  poster.innerHTML = `<img class="poster-img" src=${newPoster.image} alt="poster image">
-  <h1 class="poster-title">${newPoster.title}</h1>
-  <h3 class="poster-quote">${newPoster.quote}</h3>`
+
+// function pageLoad() {
+//   mainPoster.classList.remove("hidden")
+//   makeYourOwnFormPage.classList.add("hidden")
+//   savedPostersPage.classList.add("hidden")
+//   var imageIndex = getRandomIndex(images)
+//   var titleIndex = getRandomIndex(titles)
+//   var quoteIndex = getRandomIndex(quotes)
+//   var newPoster = {
+//     image: images[imageIndex],
+//     title: titles[titleIndex],
+//     quote: quotes[quoteIndex],
+//   }
+//   updatePoster(newPoster)
+// }
+// function showRandomPoster() {
+//   //show random button
+//   makeYourOwnFormPage.classList.add("hidden")
+//   console.log(`Hey this is your `, poster)
+//   var imageIndex = getRandomIndex(images)
+//   var titleIndex = getRandomIndex(titles)
+//   var quoteIndex = getRandomIndex(quotes)
+//   var newPoster = {
+//     image: images[imageIndex],
+//     title: titles[titleIndex],
+//     quote: quotes[quoteIndex],
+//   }
+//   updatePoster(newPoster)
   
-}
-function showRandomPoster() {
-  makeYourOwnFormPage.classList.add("hidden")
-  console.log(`Hey this is your `, poster)
-  var imageIndex = getRandomIndex(images)
-  var titleIndex = getRandomIndex(titles)
-  var quoteIndex = getRandomIndex(quotes)
-  var newPoster = {
-    image: images[imageIndex],
-    title: titles[titleIndex],
-    quote: quotes[quoteIndex],
-  }
-  poster.innerHTML = `<img class="poster-img" src=${newPoster.image} alt="poster image">
-  <h1 class="poster-title">${newPoster.title}</h1>
-  <h3 class="poster-quote">${newPoster.quote}</h3>`
-}
-function makeYourOwnPosterForm() {
-  mainPoster.classList.add("hidden")
-  makeYourOwnFormPage.classList.remove("hidden")
-}
-function viewSavedPosters() {
-  makeYourOwnFormPage.classList.add("hidden")
-  mainPoster.classList.add("hidden")
-  savedPostersPage.classList.remove("hidden")
-}
+// }
+// function makeYourOwnPosterForm() {
+//   //make my own poster button
+//   mainPoster.classList.add("hidden")
+//   makeYourOwnFormPage.classList.remove("hidden")
+  
+// }
+// function viewSavedPosters() {
+//   //saved posters button
+//   makeYourOwnFormPage.classList.add("hidden")
+//   mainPoster.classList.add("hidden")
+//   savedPostersPage.classList.remove("hidden")
+// }
+// function showMyPoster() {
+//   //show my poster button
+//   newPoster = {
+//     image: document.getElementById("poster-image-url").value,
+//     title: document.getElementById("poster-title").value,
+//     quote: document.getElementById("poster-quote").value,
+//   }
+//   var newPoster = new Poster (newPoster)
+// updatePoster(newPoster)
+// console.log('This will be checking the showMyPoster functionality')
+ 
+// }
+// function updatePoster(newPoster) {
+//   mainPoster.classList.remove("hidden")
+//   makeYourOwnFormPage.classList.add("hidden")
+//   savedPostersPage.classList.add("hidden")
 
+//   poster.innerHTML = `<img class="poster-img" src=${newPoster.image} alt="poster image">
+//   <h1 class="poster-title">${newPoster.title}</h1>
+//   <h3 class="poster-quote">${newPoster.quote}</h3>`
+// }
 
+// function updatePoster2(newPoster) {
+//   mainPoster.classList.remove("hidden")
+//   makeYourOwnFormPage.classList.add("hidden")
+//   savedPostersPage.classList.add("hidden")
+
+//   posterImage.src = newPoster.image
+//   posterTitle.innerText = newPoster.title
+//   posterQuote.innerText = newPoster.quote
+// }
+
+//On the new poster form view, users should be able to 
+//fill out the three input fields and then hit the 
+//Show My Poster button
+
+// When the Show My Poster button is clicked, 
+//several things will happen:
+
+// Use the values from the inputs to create a new instance 
+//of our Poster class (part of your data model)
+
+// Save the submitted data into the respective arrays 
+//(image URL into the images array, etc - all part of your data model)
+//so that future random posters can use the user-created data
+
+// Change back to the main poster view (hiding the form view again)
+// Use the new instance of the Poster class (part of your data model) 
+//to display the newly created poster image, title, and quote in 
+//the main view on the DOM
 
 

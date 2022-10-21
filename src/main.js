@@ -9,6 +9,13 @@ var viewSavedButton = document.querySelector(".show-saved")
 var savedPostersPage = document.querySelector(".saved-posters")
 var nevermindButton = document.querySelector(".show-main")
 var backToMainButton = document.querySelector(".back-to-main")
+var showMyPosterButton = document.querySelector(".make-poster")
+var imageInputValue = document.getElementById("poster-image-url")
+var titleInputValue = document.getElementById("poster-title")
+var quoteInputValue = document.getElementById("poster-quote")
+var posterImage = document.querySelector(".poster-img")
+var posterTitle = document.querySelector(".poster-title")
+var posterQuote = document.querySelector(".poster-quote")
 
 // event listeners go here 👇
 window.addEventListener("load", pageLoad)
@@ -17,6 +24,7 @@ randomPosterButton.addEventListener("click", showRandomPoster)
 viewSavedButton.addEventListener("click", viewSavedPosters)
 nevermindButton.addEventListener("click", pageLoad)
 backToMainButton.addEventListener("click", pageLoad)
+showMyPosterButton.addEventListener("click", submitPosterForm)
 
 
 // we've provided you with some data to work with 👇
@@ -126,10 +134,12 @@ var currentPoster;
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 }
-function pageLoad() {
+function pageLoadDisplay() {
   mainPoster.classList.remove("hidden")
   makeYourOwnFormPage.classList.add("hidden")
   savedPostersPage.classList.add("hidden")
+}
+function randomPosterDisplay() {
   var imageIndex = getRandomIndex(images)
   var titleIndex = getRandomIndex(titles)
   var quoteIndex = getRandomIndex(quotes)
@@ -138,25 +148,18 @@ function pageLoad() {
     title: titles[titleIndex],
     quote: quotes[quoteIndex],
   }
-  poster.innerHTML = `<img class="poster-img" src=${newPoster.image} alt="poster image">
-  <h1 class="poster-title">${newPoster.title}</h1>
-  <h3 class="poster-quote">${newPoster.quote}</h3>`
-  
+  currentPoster = new Poster(newPoster.image,newPoster.title,newPoster.quote)
+  posterImage.src = currentPoster.imageURL
+  posterTitle.innerText = currentPoster.title
+  posterQuote.innerText = currentPoster.quote
+}
+function pageLoad() {
+  pageLoadDisplay()
+  randomPosterDisplay()  
 }
 function showRandomPoster() {
-  makeYourOwnFormPage.classList.add("hidden")
-  console.log(`Hey this is your `, poster)
-  var imageIndex = getRandomIndex(images)
-  var titleIndex = getRandomIndex(titles)
-  var quoteIndex = getRandomIndex(quotes)
-  var newPoster = {
-    image: images[imageIndex],
-    title: titles[titleIndex],
-    quote: quotes[quoteIndex],
-  }
-  poster.innerHTML = `<img class="poster-img" src=${newPoster.image} alt="poster image">
-  <h1 class="poster-title">${newPoster.title}</h1>
-  <h3 class="poster-quote">${newPoster.quote}</h3>`
+  pageLoadDisplay()
+  randomPosterDisplay()
 }
 function makeYourOwnPosterForm() {
   mainPoster.classList.add("hidden")
@@ -166,4 +169,19 @@ function viewSavedPosters() {
   makeYourOwnFormPage.classList.add("hidden")
   mainPoster.classList.add("hidden")
   savedPostersPage.classList.remove("hidden")
+}
+function submitPosterForm(event) {
+  event.preventDefault()
+  mainPoster.classList.remove("hidden")
+  makeYourOwnFormPage.classList.add("hidden")
+
+  posterImage.src = imageInputValue.value
+  posterTitle.innerText = titleInputValue.value
+  posterQuote.innerText = quoteInputValue.value
+  currentPoster = new Poster(posterImage,posterTitle,posterQuote)
+  
+  images.push(imageInputValue)
+  titles.push(titleInputValue)
+  quotes.push(quoteInputValue)
+  savedPosters.push(currentPoster)
 }

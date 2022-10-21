@@ -134,10 +134,12 @@ var currentPoster;
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 }
-function pageLoad() {
+function pageLoadDisplay() {
   mainPoster.classList.remove("hidden")
   makeYourOwnFormPage.classList.add("hidden")
   savedPostersPage.classList.add("hidden")
+}
+function randomPosterDisplay() {
   var imageIndex = getRandomIndex(images)
   var titleIndex = getRandomIndex(titles)
   var quoteIndex = getRandomIndex(quotes)
@@ -150,25 +152,16 @@ function pageLoad() {
   posterImage.src = currentPoster.imageURL
   posterTitle.innerText = currentPoster.title
   posterQuote.innerText = currentPoster.quote
-  
-// posterImage.src =currentPoster.imageurl
-// posterTitle.innerText = currentPoster.title
-  
+}
+function pageLoad() {
+  pageLoadDisplay()
+  randomPosterDisplay()  
 }
 function showRandomPoster() {
-  makeYourOwnFormPage.classList.add("hidden")
+  pageLoadDisplay()
   console.log(`Hey this is your `, poster)
-  var imageIndex = getRandomIndex(images)
-  var titleIndex = getRandomIndex(titles)
-  var quoteIndex = getRandomIndex(quotes)
-  var newPoster = {
-    image: images[imageIndex],
-    title: titles[titleIndex],
-    quote: quotes[quoteIndex],
-  }
-  poster.innerHTML = `<img class="poster-img" src=${newPoster.image} alt="poster image">
-  <h1 class="poster-title">${newPoster.title}</h1>
-  <h3 class="poster-quote">${newPoster.quote}</h3>`
+  console.log("Checking to see if imageInputValue.value works: ", imageInputValue)
+  randomPosterDisplay()
 }
 function makeYourOwnPosterForm() {
   mainPoster.classList.add("hidden")
@@ -180,32 +173,22 @@ function viewSavedPosters() {
   savedPostersPage.classList.remove("hidden")
 }
 function submitPosterForm(event) {
-  
   console.log("The submitPosterForm is firing")
-  console.log(imageInputValue)
   event.preventDefault()
-  makeYourOwnFormPage.classList.remove("hidden")
+  mainPoster.classList.remove("hidden")
+  makeYourOwnFormPage.classList.add("hidden")
+
+  posterImage.src = imageInputValue.value
+  posterTitle.innerText = titleInputValue.value
+  posterQuote.innerText = quoteInputValue.value
+  currentPoster = new Poster(posterImage,posterTitle,posterQuote)
   
-  var imageInputValue = document.getElementById("poster-image-url").value
-  var titleInputValue = document.getElementById("poster-title").value
-  var quoteInputValue = document.getElementById("poster-quote").value
-  // var imageInputValue = imageInputValue.value
-  // var titleInputValue = titleInputValue.value
-  // var quoteInputValue = quoteInputValue.value
-  console.log("imageInputValue: ",imageInputValue )
-  console.log("titleInputValue: ", titleInputValue)
-  console.log("quoteInputValue: ", quoteInputValue)
-  poster.innerHTML =`<img class="poster-img" src="${imageInputValue}" alt="nothin' to see here">
-  <h1 class="poster-title">${titleInputValue}</h1>
-  <h3 class="poster-quote">${quoteInputValue}</h3>`
-  console.log(makeYourOwnFormPage)
-  var userPoster = new Poster(imageInputValue, titleInputValue, quoteInputValue)
   images.push(imageInputValue)
   titles.push(titleInputValue)
   quotes.push(quoteInputValue)
-  savedPosters.push(userPoster)
+  savedPosters.push(currentPoster)
 }
-var currentPoster = new Poster(posterImage,posterTitle,posterQuote)
+
 
 // posterImage.src =currentPoster.imageurl
 // posterTitle.innerText = currentPoster.title

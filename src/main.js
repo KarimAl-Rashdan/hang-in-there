@@ -195,16 +195,23 @@ function saveMyPoster() {
   }
 }
 function viewSavedPostersGrid() {
-  saveMyPoster()
+  
+  //savedPostersGrid.innerHTML += ""
+  //for(var i = 0; i < savedPosters.length; i++) {
   savedPostersGrid.innerHTML += `<article class="mini-poster"> id ${currentPoster.id}
   <img class="img" src="${currentPoster.imageURL}" alt="nothin' to see here">
   <h2 class="poster-title">${currentPoster.title}</h2>
   <h4 class="poster-quote">${currentPoster.quote}</h4>
   </article>`
+  saveMyPoster()
 }
 function deleteSavedPoster(event) {
+  console.log(event.target)
+  console.log(savedPosters.indexOf(event.target))
   event.target.parentElement.remove()
   //savedPosters.indexOf(event.target)
+
+  
   //savedPosters.splice(,1)
 
   //splice out of the array

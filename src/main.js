@@ -17,6 +17,7 @@ var posterImage = document.querySelector(".poster-img")
 var posterTitle = document.querySelector(".poster-title")
 var posterQuote = document.querySelector(".poster-quote")
 var saveThisPosterButton = document.querySelector(".save-poster")
+var savedPostersGrid = document.querySelector(".saved-posters-grid")
 
 // event listeners go here 👇
 window.addEventListener("load", pageLoad)
@@ -27,6 +28,7 @@ nevermindButton.addEventListener("click", pageLoad)
 backToMainButton.addEventListener("click", pageLoad)
 showMyPosterButton.addEventListener("click", submitPosterForm)
 saveThisPosterButton.addEventListener("click", saveThisPoster)
+// savedPostersGrid.addEventListener("click", saveThisPoster)
 
 
 // we've provided you with some data to work with 👇
@@ -185,9 +187,9 @@ function saveThisPoster() {
   if(!savedPosters.includes(currentPoster)) {
     savedPosters.push(currentPoster)
   }
-  
+  savedPostersGrid.innerHTML += `<article class="mini-poster">
+  <img class="img" src="${currentPoster.imageURL}" alt="nothin' to see here">
+  <h2 class="title">${currentPoster.title}</h2>
+  <h4 class="">${currentPoster.quote}</h4>
+  </article>`
 }
-/*When a user clicks the “Save This Poster” button, the current main poster will be added to the savedPosters array.
-If a user clicks the “Save This Poster” more than once on a single poster, it will still only be saved once (no duplicates)
-When a user clicks the “Show Saved Posters” button, we should see the saved posters section
-All the posters in the savedPosters array should be displayed in the saved posters grid section*/

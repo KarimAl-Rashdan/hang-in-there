@@ -198,7 +198,7 @@ function viewSavedPostersGrid() {
   
   //savedPostersGrid.innerHTML += ""
   //for(var i = 0; i < savedPosters.length; i++) {
-  savedPostersGrid.innerHTML += `<article class="mini-poster"> id ${currentPoster.id}
+  savedPostersGrid.innerHTML += `<article class="mini-poster">
   <img class="img" src="${currentPoster.imageURL}" alt="nothin' to see here">
   <h2 class="poster-title">${currentPoster.title}</h2>
   <h4 class="poster-quote">${currentPoster.quote}</h4>

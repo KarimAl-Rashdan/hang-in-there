@@ -185,14 +185,18 @@ function submitPosterForm(event) {
 function saveThisPoster() {
   if(!savedPosters.includes(currentPoster)) {
     savedPosters.push(currentPoster)
-  }
+  } 
+  return savedPosters
 }
 function viewSavedPosterGrid() {
+  saveThisPoster()
+  for (var i = 0; i < savedPosters.length; i++) {
   savedPostersGrid.innerHTML += `<article class="mini-poster">
-  <img class="img" src="${currentPoster.imageURL}" alt="nothin' to see here">
-  <h2 class="title">${currentPoster.title}</h2>
-  <h4 class="">${currentPoster.quote}</h4>
+  <img class="img" src="${savedPosters[i].imageURL}" alt="nothin' to see here">
+  <h2 class="title">${savedPosters[i].title}</h2>
+  <h4 class="">${savedPosters[i].quote}</h4>
   </article>`
+  }
 }
 function deleteSavedPoster(event) {
   event.target.parentElement.remove()

@@ -190,12 +190,13 @@ function saveThisPoster() {
 }
 function viewSavedPosterGrid() {
   saveThisPoster()
+  savedPostersGrid.innerHTML = ""
   for (var i = 0; i < savedPosters.length; i++) {
-  savedPostersGrid.innerHTML += `<article class="mini-poster">
-  <img class="img" src="${savedPosters[i].imageURL}" alt="nothin' to see here">
-  <h2 class="title">${savedPosters[i].title}</h2>
-  <h4 class="">${savedPosters[i].quote}</h4>
-  </article>`
+    savedPostersGrid.innerHTML += `<article class="mini-poster">
+    <img class="img" src="${savedPosters[i].imageURL}" alt="nothin' to see here">
+    <h2 class="title">${savedPosters[i].title}</h2>
+    <h4 class="">${savedPosters[i].quote}</h4>
+    </article>`
   }
 }
 function deleteSavedPoster(event) {

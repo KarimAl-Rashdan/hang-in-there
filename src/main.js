@@ -1,5 +1,4 @@
 // query selector variables go here 👇
-
 var poster = document.querySelector(".poster")
 var randomPosterButton = document.querySelector(".show-random")
 var makeYourOwnPosterButton = document.querySelector(".show-form")
@@ -20,15 +19,14 @@ var saveThisPosterButton = document.querySelector(".save-poster")
 var savedPostersGrid = document.querySelector(".saved-posters-grid")
 
 // event listeners go here 👇
-window.addEventListener("load", pageLoad)
+window.addEventListener("load", loadMainPage)
 makeYourOwnPosterButton.addEventListener("click", makeYourOwnPosterForm)
-randomPosterButton.addEventListener("click", pageLoad)
+randomPosterButton.addEventListener("click", loadMainPage)
 viewSavedButton.addEventListener("click", viewSavedPosters)
-nevermindButton.addEventListener("click", pageLoad)
-backToMainButton.addEventListener("click", pageLoad)
+nevermindButton.addEventListener("click", loadMainPage)
+backToMainButton.addEventListener("click", loadMainPage)
 showMyPosterButton.addEventListener("click", submitPosterForm)
-saveThisPosterButton.addEventListener("click", saveThisPoster)
-// savedPostersGrid.addEventListener("click", saveThisPoster)
+saveThisPosterButton.addEventListener("click", viewSavedPosterGrid)
 
 
 // we've provided you with some data to work with 👇
@@ -138,12 +136,12 @@ var currentPoster;
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 }
-function pageLoadDisplay() {
+function viewMainPage() {
   mainPoster.classList.remove("hidden")
   makeYourOwnFormPage.classList.add("hidden")
   savedPostersPage.classList.add("hidden")
 }
-function randomPosterDisplay() {
+function viewRandomPoster() {
   var imageIndex = getRandomIndex(images)
   var titleIndex = getRandomIndex(titles)
   var quoteIndex = getRandomIndex(quotes)
@@ -157,9 +155,9 @@ function randomPosterDisplay() {
   posterTitle.innerText = currentPoster.title
   posterQuote.innerText = currentPoster.quote
 }
-function pageLoad() {
-  pageLoadDisplay()
-  randomPosterDisplay()  
+function loadMainPage() {
+  viewMainPage()
+  viewRandomPoster()  
 }
 function makeYourOwnPosterForm() {
   mainPoster.classList.add("hidden")
@@ -172,7 +170,7 @@ function viewSavedPosters() {
 }
 function submitPosterForm(event) {
   event.preventDefault()
-  pageLoadDisplay()
+  viewMainPage()
 
   posterImage.src = imageInputValue.value
   posterTitle.innerText = titleInputValue.value
@@ -187,6 +185,8 @@ function saveThisPoster() {
   if(!savedPosters.includes(currentPoster)) {
     savedPosters.push(currentPoster)
   }
+}
+function viewSavedPosterGrid() {
   savedPostersGrid.innerHTML += `<article class="mini-poster">
   <img class="img" src="${currentPoster.imageURL}" alt="nothin' to see here">
   <h2 class="title">${currentPoster.title}</h2>

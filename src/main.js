@@ -190,16 +190,29 @@ function saveThisPoster() {
 }
 function viewSavedPosterGrid() {
   saveThisPoster()
+  savedPostersGrid.innerHTML = null
   for (var i = 0; i < savedPosters.length; i++) {
-  savedPostersGrid.innerHTML += `<article class="mini-poster">
+  savedPostersGrid.innerHTML += `<article class="mini-poster" id=${savedPosters[i].id}> 
   <img class="img" src="${savedPosters[i].imageURL}" alt="nothin' to see here">
   <h2 class="title">${savedPosters[i].title}</h2>
   <h4 class="">${savedPosters[i].quote}</h4>
   </article>`
-  }
+  } 
 }
 function deleteSavedPoster(event) {
-  event.target.parentElement.remove()
+  var target = event.target.parentElement
+  for(var i = 0; i < savedPosters.length; i++) {
+    if(savedPosters[i].id.toString() === target.id) {
+      savedPosters.splice(i,1)
+      target.remove()
+    }
+  //var index = savedPosters.indexOf(event.target.parentElement)
+  //console.log(index)
+  
+  //event.target.parentElement.remove()
+  // savedPosters.splice(index,1)
+  // return savedPosters[i]
+}
 }
 /*From the saved posters view, if a user double clicks a saved poster, it will be deleted
 onclick functionality should not be used in any HTML code - all functionality should be through JavaScript.*/

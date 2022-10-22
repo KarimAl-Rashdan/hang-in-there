@@ -172,15 +172,14 @@ function viewSavedPosters() {
 function submitPosterForm(event) {
   event.preventDefault()
   viewMainPage()
-
   posterImage.src = imageInputValue.value
   posterTitle.innerText = titleInputValue.value
   posterQuote.innerText = quoteInputValue.value
-  currentPoster = new Poster(posterImage,posterTitle,posterQuote)
+  currentPoster = new Poster(posterImage.src, posterTitle.innerText, posterQuote.innerText)
   
-  images.push(imageInputValue)
-  titles.push(titleInputValue)
-  quotes.push(quoteInputValue)
+  images.push(imageInputValue.value)
+  titles.push(titleInputValue.value)
+  quotes.push(quoteInputValue.value)
 }
 function saveThisPoster() {
   if(!savedPosters.includes(currentPoster)) {
@@ -206,13 +205,5 @@ function deleteSavedPoster(event) {
       savedPosters.splice(i,1)
       target.remove()
     }
-  //var index = savedPosters.indexOf(event.target.parentElement)
-  //console.log(index)
-  
-  //event.target.parentElement.remove()
-  // savedPosters.splice(index,1)
-  // return savedPosters[i]
 }
 }
-/*From the saved posters view, if a user double clicks a saved poster, it will be deleted
-onclick functionality should not be used in any HTML code - all functionality should be through JavaScript.*/

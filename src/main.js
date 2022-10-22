@@ -18,6 +18,7 @@ var posterQuote = document.querySelector(".poster-quote")
 var saveThisPosterButton = document.querySelector(".save-poster")
 var savedPostersGrid = document.querySelector(".saved-posters-grid")
 
+
 // event listeners go here 👇
 window.addEventListener("load", loadMainPage)
 makeYourOwnPosterButton.addEventListener("click", makeYourOwnPosterForm)
@@ -27,7 +28,7 @@ nevermindButton.addEventListener("click", loadMainPage)
 backToMainButton.addEventListener("click", loadMainPage)
 showMyPosterButton.addEventListener("click", submitPosterForm)
 saveThisPosterButton.addEventListener("click", viewSavedPosterGrid)
-
+savedPostersGrid.addEventListener("dblclick", deleteSavedPoster)
 
 // we've provided you with some data to work with 👇
 var images = [
@@ -193,3 +194,8 @@ function viewSavedPosterGrid() {
   <h4 class="">${currentPoster.quote}</h4>
   </article>`
 }
+function deleteSavedPoster(event) {
+  event.target.parentElement.remove()
+}
+/*From the saved posters view, if a user double clicks a saved poster, it will be deleted
+onclick functionality should not be used in any HTML code - all functionality should be through JavaScript.*/

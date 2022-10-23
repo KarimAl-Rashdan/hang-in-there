@@ -176,8 +176,6 @@ function submitPosterForm(event) {
   posterImage.src = imageInputValue.value
   posterTitle.innerText = titleInputValue.value
   posterQuote.innerText = quoteInputValue.value
-  
-  
   images.push(imageInputValue.value)
   titles.push(titleInputValue.value)
   quotes.push(quoteInputValue.value)

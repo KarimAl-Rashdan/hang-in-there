@@ -18,7 +18,6 @@ var posterQuote = document.querySelector(".poster-quote")
 var saveThisPosterButton = document.querySelector(".save-poster")
 var savedPostersGrid = document.querySelector(".saved-posters-grid")
 
-
 // event listeners go here 👇
 window.addEventListener("load", loadMainPage)
 makeYourOwnPosterButton.addEventListener("click", makeYourOwnPosterForm)
@@ -131,7 +130,6 @@ var quotes = [
 var savedPosters = [];
 var currentPoster;
  
-
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
 function getRandomIndex(array) {
@@ -171,11 +169,11 @@ function viewSavedPosters() {
 }
 function submitPosterForm(event) {
   event.preventDefault()
-  currentPoster = new Poster(posterImage.src, posterTitle.innerText, posterQuote.innerText)
   viewMainPage()
   posterImage.src = imageInputValue.value
   posterTitle.innerText = titleInputValue.value
   posterQuote.innerText = quoteInputValue.value
+  currentPoster = new Poster(posterImage.src, posterTitle.innerText, posterQuote.innerText)
   images.push(imageInputValue.value)
   titles.push(titleInputValue.value)
   quotes.push(quoteInputValue.value)
@@ -201,8 +199,8 @@ function deleteSavedPoster(event) {
   var target = event.target.parentElement
   for(var i = 0; i < savedPosters.length; i++) {
     if(savedPosters[i].id.toString() === target.id) {
-      savedPosters.splice(i,1)
+      savedPosters.splice(i, 1)
       target.remove()
     }
-}
+  }
 }

@@ -18,7 +18,6 @@ var posterQuote = document.querySelector(".poster-quote")
 var saveThisPosterButton = document.querySelector(".save-poster")
 var savedPostersGrid = document.querySelector(".saved-posters-grid")
 
-
 // event listeners go here 👇
 window.addEventListener("load", loadMainPage)
 makeYourOwnPosterButton.addEventListener("click", makeYourOwnPosterForm)
@@ -131,7 +130,6 @@ var quotes = [
 var savedPosters = [];
 var currentPoster;
  
-
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
 function getRandomIndex(array) {
@@ -172,15 +170,13 @@ function viewSavedPosters() {
 function submitPosterForm(event) {
   event.preventDefault()
   viewMainPage()
-
   posterImage.src = imageInputValue.value
   posterTitle.innerText = titleInputValue.value
   posterQuote.innerText = quoteInputValue.value
-  currentPoster = new Poster(posterImage,posterTitle,posterQuote)
-  
-  images.push(imageInputValue)
-  titles.push(titleInputValue)
-  quotes.push(quoteInputValue)
+  currentPoster = new Poster(posterImage.src, posterTitle.innerText, posterQuote.innerText)
+  images.push(imageInputValue.value)
+  titles.push(titleInputValue.value)
+  quotes.push(quoteInputValue.value)
 }
 function saveThisPoster() {
   if(!savedPosters.includes(currentPoster)) {
@@ -190,17 +186,21 @@ function saveThisPoster() {
 }
 function viewSavedPosterGrid() {
   saveThisPoster()
-  savedPostersGrid.innerHTML = ""
+  savedPostersGrid.innerHTML = null
   for (var i = 0; i < savedPosters.length; i++) {
-    savedPostersGrid.innerHTML += `<article class="mini-poster">
-    <img class="img" src="${savedPosters[i].imageURL}" alt="nothin' to see here">
-    <h2 class="title">${savedPosters[i].title}</h2>
-    <h4 class="">${savedPosters[i].quote}</h4>
-    </article>`
-  }
+  savedPostersGrid.innerHTML += `<article class="mini-poster" id=${savedPosters[i].id}> 
+  <img class="img" src="${savedPosters[i].imageURL}" alt="nothin' to see here">
+  <h2 class="title">${savedPosters[i].title}</h2>
+  <h4 class="">${savedPosters[i].quote}</h4>
+  </article>`
+  } 
 }
 function deleteSavedPoster(event) {
-  event.target.parentElement.remove()
+  var targetPoster = event.target.parentElement
+  for (var i = 0; i < savedPosters.length; i++) {
+    if(savedPosters[i].id.toString() === targetPoster.id) {
+    savedPosters.splice(i, 1)
+    targetPoster.remove()
+    }
+  }
 }
-/*From the saved posters view, if a user double clicks a saved poster, it will be deleted
-onclick functionality should not be used in any HTML code - all functionality should be through JavaScript.*/

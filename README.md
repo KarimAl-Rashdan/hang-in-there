@@ -40,7 +40,7 @@ fourth, In the terminal, run the coommand open index.html for initial deployment
 ### Preview of App:
 [//]: <> (Provide ONE gif or screenshot of your application - choose the "coolest" piece of functionality to show off.)
 
-![alt text](Screen Shot 2022-10-22 at 6.35.14 PM.png)
+![alt text](Screen Shot 2022-10-22 at 6.35.14 PM Small.jpeg)
 
 ### Context:
 [//]: <> (Give some context for the project here. How long did you have to work on it? How far into the Turing program are you?)

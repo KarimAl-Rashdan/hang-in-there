@@ -32,7 +32,7 @@ We have built a webpage that allows the user to view randomly generated motivati
 ### Installation Instructions:
 [//]: <> (What steps does a person have to take to get your app cloned down and running?)
 
-First, Clone the SSH code from this link, <https://github.com/KarimAl-Rashdan/hang-in-there> to your local computer 
+First, Clone the SSH code from this [link](https://github.com/KarimAl-Rashdan/hang-in-there) to your local computer 
 Second, Open in your text editor
 third, Read the README.md 
 fourth, In the terminal, run the coommand open index.html for initial deployment and interaction with app
@@ -40,7 +40,7 @@ fourth, In the terminal, run the coommand open index.html for initial deployment
 ### Preview of App:
 [//]: <> (Provide ONE gif or screenshot of your application - choose the "coolest" piece of functionality to show off.)
 
-
+![alt text](Screen Shot 2022-10-22 at 6.35.14 PM.png)
 
 ### Context:
 [//]: <> (Give some context for the project here. How long did you have to work on it? How far into the Turing program are you?)
@@ -50,20 +50,20 @@ This project was completed during our second week at Turing School it was our fi
 ### Contributors:
 [//]: <> (Who worked on this application? Link to their GitHubs.)
 
-Karim Al Rashdan GitHub: <https://github.com/KarimAl-Rashdan>
-Faye Rosenshein GitHub: <https://github.com/FayeRosenshein>
+Karim Al Rashdan [GitHub](https://github.com/KarimAl-Rashdan)
+Faye Rosenshein [GitHub](https://github.com/FayeRosenshein)
 
 ### Learning Goals:
 [//]: <> (What were the learning goals of this project? What tech did you work with?)
 
-** Write clean, DRY JavaScript
-** Use a provided class by creating object instances using the new keyword
-** Manipulate the page after it has loaded adding, removing, and updating elements on the DOM
-** Begin to understand the connection between HTML, CSS and JavaScript
-** Practice reading, understanding, and using provided code
-** Build an understanding of writing code collaboratively
-** Document changes with atomic commits & thorough code reviews
-** Communicate, troubleshoot, and plan effectively as a team
+- Write clean, DRY JavaScript
+- Use a provided class by creating object instances using the new keyword
+- Manipulate the page after it has loaded adding, removing, and updating elements on the DOM
+- Begin to understand the connection between HTML, CSS and JavaScript
+- Practice reading, understanding, and using provided code
+- Build an understanding of writing code collaboratively
+- Document changes with atomic commits & thorough code reviews
+- Communicate, troubleshoot, and plan effectively as a team
 
 ### Wins + Challenges:
 [//]: <> (What are 2-3 wins you have from this project? What were some challenges you faced - and how did you get over them?)

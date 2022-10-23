@@ -196,11 +196,11 @@ function viewSavedPosterGrid() {
   } 
 }
 function deleteSavedPoster(event) {
-  var targetPoster = event.target.parentElement
-  for (var i = 0; i < savedPosters.length; i++) {
-    if(savedPosters[i].id.toString() === targetPoster.id) {
-    savedPosters.splice(i, 1)
-    targetPoster.remove()
+  var target = event.target.parentElement
+  for(var i = 0; i < savedPosters.length; i++) {
+    if(savedPosters[i].id.toString() === target.id) {
+      savedPosters.splice(i, 1)
+      target.remove()
     }
   }
 }

@@ -171,11 +171,12 @@ function viewSavedPosters() {
 }
 function submitPosterForm(event) {
   event.preventDefault()
+  currentPoster = new Poster(posterImage.src, posterTitle.innerText, posterQuote.innerText)
   viewMainPage()
   posterImage.src = imageInputValue.value
   posterTitle.innerText = titleInputValue.value
   posterQuote.innerText = quoteInputValue.value
-  currentPoster = new Poster(posterImage.src, posterTitle.innerText, posterQuote.innerText)
+  
   
   images.push(imageInputValue.value)
   titles.push(titleInputValue.value)
